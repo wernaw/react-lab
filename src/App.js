@@ -1,5 +1,6 @@
 import './App.css';
 import {useState} from "react";
+import "milligram";
 
 function App() {
     const [title, setTitle] = useState('Wall-E');
@@ -21,7 +22,7 @@ function App() {
     }
 
   return (
-      <div>
+      <div className="container">
           <h1>My favourite movies to watch</h1>
           <ul>
               {movies.map((movie) => <li key={movie.title}>{movie.title}</li>)}
