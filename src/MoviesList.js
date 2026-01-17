@@ -1,9 +1,13 @@
-export function MoviesList(props) {
+import MovieListItem from "./MovieListItem";
 
-     return <div>
-        <h2>Titles</h2>
+
+export default function MoviesList(props) {
+    return <div>
+        <h2>Movies</h2>
         <ul>
-            {props.movies.map((movie) => <li key={movie.title}>{movie.title} ({movie.year})</li>)}
+            {props.movies.map(movie => <li key={movie.title}>
+                <MovieListItem movie={movie} onDelete={() => props.onDeleteMovie(movie)}/>
+            </li>)}
         </ul>
-         </div>
+    </div>;
 }
