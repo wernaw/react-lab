@@ -3,34 +3,40 @@ import {useState} from "react";
 import "milligram";
 
 function App() {
-    const [title, setTitle] = useState('Wall-E');
-    const movies = [
-    {title: "Wall-E"},
-    {title: "Pulp Fiction"},
-    {title: "Matrix"},
-    {title: "1670"},
-];
-    let message;
-    if (title.length < 4) {
-        message = "Title is too short.";
+    const [title, setTitle] = useState('');
+    const [year, setYear] = useState('');
+    const [movies, setMovies] = useState([]);
+
+    function handleAddMovie() {
+        const movie = {
+            title: title,
+            year: year,
+        };
+        setMovies([...movies, movie]);
+        setTitle('');
+        setYear('');
     }
-    else if (title.length < 20) {
-        message = "Title is fine.";
-    }
-    else {
-        message = "Title is too long.";
-    }
+    //const movies = [
+    //{title: "Wall-E"},
+    //{title: "Pulp Fiction"},
+    //{title: "Matrix"},
+    // ];
 
   return (
       <div className="container">
           <h1>My favourite movies to watch</h1>
+          <h2>Titles</h2>
           <ul>
-              {movies.map((movie) => <li key={movie.title}>{movie.title}</li>)}
+              {movies.map((movie) => <li key={movie.title}>{movie.title} ({movie.year})</li>)}
           </ul>
-          <h2>My favourite movie for today is {title}</h2>
-          <p1>{title.length > 0 && <div>{message}</div>}</p1>
+          <h2>Add Movie</h2>
+          <label>Title</label>
           <input type="text" value={title} onChange={(event) => setTitle(event.target.value)}/>
-          <input type="button" onClick={() => alert(title)} value="Show movie title"/>
+
+          <label>Year</label>
+          <input type="text" value={year} onChange={(event) => setYear(event.target.value)}/>
+
+          <button onClick={handleAddMovie}>Add movie</button>
       </div>
   );
 }
